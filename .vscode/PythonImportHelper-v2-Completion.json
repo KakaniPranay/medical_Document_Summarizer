@@ -1,0 +1,190 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "HybridSummarizer",
+        "importPath": "summarizer",
+        "description": "summarizer",
+        "isExtraImport": true,
+        "detail": "summarizer",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "nltk",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "nltk",
+        "description": "nltk",
+        "detail": "nltk",
+        "documentation": {}
+    },
+    {
+        "label": "sent_tokenize",
+        "importPath": "nltk.tokenize",
+        "description": "nltk.tokenize",
+        "isExtraImport": true,
+        "detail": "nltk.tokenize",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "SentenceTransformer",
+        "importPath": "sentence_transformers",
+        "description": "sentence_transformers",
+        "isExtraImport": true,
+        "detail": "sentence_transformers",
+        "documentation": {}
+    },
+    {
+        "label": "networkx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "networkx",
+        "description": "networkx",
+        "detail": "networkx",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    if request.method == \"POST\":\n        text = request.form.get(\"text\", \"\").strip()\n        if not text:\n            flash(\"Please paste or upload medical text to summarize.\", \"warning\")\n            return redirect(url_for(\"index\"))\n        # method: 'hybrid' (extractive+abstractive), 'extractive' or 'abstractive'\n        method = request.form.get(\"method\", \"hybrid\")\n        try:\n            summary = summ.summarize(text, method=method)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\napp.secret_key = os.environ.get(\"FLASK_SECRET\", \"supersecretkey123\")\n# instantiate summarizer (loads models lazily)\nsumm = HybridSummarizer()\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    if request.method == \"POST\":\n        text = request.form.get(\"text\", \"\").strip()\n        if not text:\n            flash(\"Please paste or upload medical text to summarize.\", \"warning\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.secret_key = os.environ.get(\"FLASK_SECRET\", \"supersecretkey123\")\n# instantiate summarizer (loads models lazily)\nsumm = HybridSummarizer()\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    if request.method == \"POST\":\n        text = request.form.get(\"text\", \"\").strip()\n        if not text:\n            flash(\"Please paste or upload medical text to summarize.\", \"warning\")\n            return redirect(url_for(\"index\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "summ",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "summ = HybridSummarizer()\n@app.route(\"/\", methods=[\"GET\", \"POST\"])\ndef index():\n    if request.method == \"POST\":\n        text = request.form.get(\"text\", \"\").strip()\n        if not text:\n            flash(\"Please paste or upload medical text to summarize.\", \"warning\")\n            return redirect(url_for(\"index\"))\n        # method: 'hybrid' (extractive+abstractive), 'extractive' or 'abstractive'\n        method = request.form.get(\"method\", \"hybrid\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "HybridSummarizer",
+        "kind": 6,
+        "importPath": "summarizer",
+        "description": "summarizer",
+        "peekOfCode": "class HybridSummarizer:\n    def __init__(self, embedding_model_name=\"all-MiniLM-L6-v2\", abstractive_model_name=\"facebook/bart-large-cnn\"):\n        # Sentence transformer for embedding\n        self.embedding_model_name = embedding_model_name\n        try:\n            self.embedder = SentenceTransformer(self.embedding_model_name)\n        except Exception as e:\n            logger.warning(f\"SentenceTransformer load failed: {e}\")\n            self.embedder = None\n        # Abstractive model name",
+        "detail": "summarizer",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "summarizer",
+        "description": "summarizer",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\nclass HybridSummarizer:\n    def __init__(self, embedding_model_name=\"all-MiniLM-L6-v2\", abstractive_model_name=\"facebook/bart-large-cnn\"):\n        # Sentence transformer for embedding\n        self.embedding_model_name = embedding_model_name\n        try:\n            self.embedder = SentenceTransformer(self.embedding_model_name)\n        except Exception as e:\n            logger.warning(f\"SentenceTransformer load failed: {e}\")",
+        "detail": "summarizer",
+        "documentation": {}
+    }
+]
