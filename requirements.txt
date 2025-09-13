@@ -1,0 +1,8 @@
+flask>=2.0
+nltk>=3.5
+spacy>=3.0
+sentence-transformers>=2.2.2
+networkx>=2.5
+transformers>=4.0
+torch>=1.9    # CPU or GPU; if you can't install torch, abstractive fallback will still be handled
+openai>=0.27.0

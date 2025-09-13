@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Medical Document Summarizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Comprehensive Medical Document Summarizer</h1>
+      <form method="post">
+        <label for="text">Paste medical text or notes here:</label><br/>
+        <textarea id="text" name="text" rows="14" placeholder="Paste medical reports, clinical notes, or article text...">{{ original }}</textarea>
+        <div class="controls">
+          <label for="method">Method:</label>
+          <select id="method" name="method">
+            <option value="hybrid" {% if method=='hybrid' %}selected{% endif %}>Hybrid (TextRank → Abstractive)</option>
+            <option value="extractive" {% if method=='extractive' %}selected{% endif %}>Extractive (TextRank)</option>
+            <option value="abstractive" {% if method=='abstractive' %}selected{% endif %}>Abstractive (LLM)</option>
+          </select>
+          <button type="submit">Summarize</button>
+        </div>
+      </form>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flashes">
+            {% for category, msg in messages %}
+              <div class="flash {{ category }}">{{ msg }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% if summary is not none %}
+        <div class="result">
+          <h2>Summary ({{ method }})</h2>
+          <p>{{ summary }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
